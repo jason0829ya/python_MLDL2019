@@ -15,3 +15,4 @@ def plot(index):
     
 
 wg.interactive(plot, index=wg.IntSlider(min=0,max=len(all_images) -1,step=1,value=0))
+print('======test======')
