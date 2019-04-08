@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression as LR
 
 url = 'https://www.basketball-reference.com/leagues/NBA_2018.html'
-
 fileEast = pd.read_html(url)[0]
 fileWest = pd.read_html(url)[1]
 
@@ -23,7 +22,6 @@ my_model.fit(X_train, Y_train)
 output = my_model.predict(X_test)
 
 rankWest = np.linspace(1, 15, 15)
-
 plt.scatter(rankWest, output)
 plt.scatter(rankWest, Y_test)
 plt.xticks(range(1, 16))
