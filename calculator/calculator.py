@@ -14,11 +14,10 @@ class Calculator:
       self.screen.grid(row=0,column=0,columnspan=4,padx=5,pady=5)
       self.screen.configure(state='normal')
 
-      # create buttons using method createButton
+      # create buttons using method createButton & ACButton
       b1 = self.createButton(7)
       b2 = self.createButton(8)
       b3 = self.createButton(9)
-      #self.b4 = self.createButton(u"\u232B",None)
       b5 = self.createButton(4)
       b6 = self.createButton(5)
       b7 = self.createButton(6)
@@ -37,6 +36,7 @@ class Calculator:
       self.buttons = [b1, b2, b3,b5,b6,b7,b8,b9,
                  b10,b11,b12,b13,b14,b15,b16,b17]
 
+      # show the buttons in screen
       count=0
       for row in range(1,5):
             for column in range(4):
@@ -44,6 +44,7 @@ class Calculator:
                    continue
                 self.buttons[count].grid(row=row,column=column)
                 count += 1
+
       # arrange last button '=' at the bottom
       self.buttons[15].grid(row=5,column=0,columnspan=4)
 
@@ -53,6 +54,7 @@ class Calculator:
    def ACButton(self, val):
       return tk.Button(self.master, text=val, command=lambda:self.clearALL(), width=7)
 
+   # define the click function for all buttons
    def click(self, text, write):
       if text == '=':
          if self.state['needCalc'] == False:
@@ -79,6 +81,7 @@ class Calculator:
             self.state['saveValue'] = self.state['displayValue']
             self.state['updateDisplay'] = True
 
+   # when '=' has been clicked or operator button been clicked for second time
    def calculate(self, value):
       operator = self.state['operator']
       save_value = self.state['saveValue']
@@ -97,10 +100,13 @@ class Calculator:
       self.screen.delete('1.0', tk.END)
       self.screen.insert('1.0', result)
 
+   # AC button click function
    def clearALL(self):
       self.state = { 'needCalc': False, 'saveValue': 0, 'displayValue': 0, 'operator': '', 'updateDisplay': False }
       self.screen.delete('1.0', tk.END)
 
+
+# run the calculator
 root = tk.Tk()
 my_gui = Calculator(root)
 root.mainloop()
